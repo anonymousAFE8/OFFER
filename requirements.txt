@@ -1,0 +1,7 @@
+numpy
+pandas
+PyYAML
+scipy
+torch
+tqdm
+seq2pat

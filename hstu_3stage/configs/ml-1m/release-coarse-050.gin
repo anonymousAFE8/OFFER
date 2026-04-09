@@ -1,0 +1,65 @@
+train_fn.dataset_name = "ml-1m"
+train_fn.max_sequence_length = 200
+train_fn.local_batch_size = 512
+train_fn.eval_batch_size = 512
+
+train_fn.main_module = "HSTU"
+train_fn.dropout_rate = 0.2
+train_fn.user_embedding_norm = "l2_norm"
+train_fn.num_epochs = 1
+train_fn.item_embedding_dim = 128
+
+hstu_encoder.num_blocks = 2
+hstu_encoder.num_heads = 2
+hstu_encoder.dqk = 64
+hstu_encoder.dv = 64
+hstu_encoder.linear_dropout_rate = 0.2
+
+train_fn.learning_rate = 1e-3
+train_fn.weight_decay = 1e-4
+train_fn.num_warmup_steps = 100
+
+train_fn.interaction_module_type = "DotProduct"
+train_fn.top_k_method = "MIPSBruteForceTopK"
+
+train_fn.loss_module = "SampledSoftmaxLoss"
+train_fn.num_negatives = 128
+
+train_fn.sampling_strategy = "local"
+train_fn.temperature = 0.05
+train_fn.item_l2_norm = True
+train_fn.l2_norm_eps = 1e-6
+
+train_fn.enable_tf32 = True
+train_fn.exp_conf_dict = {
+    "is_recall": False,
+    "save_model": True,
+    "model_dir": "artifacts/checkpoints/release_coarse_050.pth",
+    "load_trans": False,
+    "load_embs": False,
+    "load_type": "",
+    "rank_num": 1,
+    "ratings_threshold": 3,
+    "use_action": False,
+    "num_actions": 5,
+    "modify_action": False,
+    "learning_rate_decay": 1,
+    "use_user_id": True,
+    "use_feat": False,
+    "use_future_loss": False,
+    "use_loss_weight": False,
+    "use_gen_feat": False,
+    "use_lamb": False,
+    "use_ce_loss": False,
+    "load_user_id_type": "new",
+    "train_ignore_last_n": 0,
+    "eval_ignore_last_n": 0,
+    "log_file": "artifacts/exports/ml1m_coarse_top1000_050.csv",
+    "result_dir": "artifacts/logs/release_coarse_050",
+    "export_rank_path": "artifacts/exports/release_coarse_top1000_050.pt",
+}
+
+create_data_loader.prefetch_factor = 4
+create_data_loader.num_workers = 8
+create_data_loader.pin_memory = True
+create_data_loader.persistent_workers = True

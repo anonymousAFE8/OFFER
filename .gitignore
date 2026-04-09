@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+Thumbs.db
+.pytest_cache/
+.mypy_cache/
+artifacts/tokenizer_runs/
+workdir/
+hstu_3stage/artifacts/checkpoints/
+hstu_3stage/artifacts/exports/
+hstu_3stage/artifacts/logs/
+hstu_3stage/artifacts/smoke/
